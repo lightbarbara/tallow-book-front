@@ -1,11 +1,11 @@
-import styled from 'styled-components'
-import logo from '../assets/logo.png'
-import FormSignIn from '../components/FormSignIn'
 import { Link } from "react-router-dom"
+import styled from "styled-components"
+import FormSignUp from "../components/FormSignUp"
+import logo from '../assets/logo.png'
 import { colors } from '../constants/colors'
 import { fonts } from '../constants/fonts'
 
-export default function SignIn() {
+export default function SignUp() {
 
     return (
         <Container>
@@ -16,8 +16,8 @@ export default function SignIn() {
                     <h2>Um destino ao seu livro</h2>
                 </Titulo>
             </div>
-            <FormSignIn />
-            <Link to={`/sign-up`}><p>Primeira vez? Cadastre-se!</p></Link>
+            <FormSignUp />
+            <Link to={`/`}><p>Já possui uma conta? Entre aqui!</p></Link>
         </Container>
     )
 }

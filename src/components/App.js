@@ -3,6 +3,7 @@ import GlobalStyle from '../assets/GlobalStyle';
 import { UserContext } from '../contexts/UserContext';
 import SignIn from '../pages/SignIn';
 import { useState } from 'react';
+import SignUp from '../pages/SignUp';
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
         <GlobalStyle />
         <Routes>
           <Route path='/' element={<SignIn />} />
+          <Route path='/sign-up' element={<SignUp />} />
         </Routes>
       </BrowserRouter>
     </UserContext.Provider>

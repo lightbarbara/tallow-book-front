@@ -1,1 +1,0 @@
-export const urlBack = 'https://localhost:5000'
