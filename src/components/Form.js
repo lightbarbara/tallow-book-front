@@ -25,7 +25,7 @@ input, input::placeholder {
 }
 
 button {
-    background-color: ${colors.lightGreen};
+    background-color: ${colors.mediumBlue};
     color: ${colors.white};
     font-weight: 700;
 }

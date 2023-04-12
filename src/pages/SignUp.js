@@ -52,7 +52,7 @@ p {
     font-size: 16px;
     font-weight: 500;
     line-height: 18px;
-    color: ${colors.darkGreen};
+    color: ${colors.darkBlue};
     text-decoration: none;
 }
 `
@@ -62,7 +62,7 @@ font-family: ${fonts.title};
 text-align: center;
 font-weight: 400;
 line-height: 50px;
-color: ${colors.darkGreen};
+color: ${colors.darkBlue};
 
 h1 {
     font-size: 36px;

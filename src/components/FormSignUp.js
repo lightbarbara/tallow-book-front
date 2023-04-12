@@ -10,6 +10,7 @@ export default function FormSignUp() {
     const [form, setForm] = useState({
         name: '',
         email: '',
+        avatar: '',
         password: ''
     })
 
@@ -54,6 +55,13 @@ export default function FormSignUp() {
                 value={form.email}
                 onChange={handleForm}
                 placeholder="Email"
+                required />
+            <input
+                name="avatar"
+                type="url"
+                value={form.avatar}
+                onChange={handleForm}
+                placeholder="Avatar"
                 required />
             <input
                 name="password"

@@ -1,8 +1,9 @@
 export const colors = {
     title: '#0172CF',
     background: '#DBEEFF',
-    darkGreen: '#1B492E',
-    lightGreen: '#7BC5C1',
+    darkBlue: '#001487',
+    mediumBlue: '#80A2DD',
+    lightBlue: '#EAF5FF',
     text: '#505050',
     white: '#fff'
 }
