@@ -4,20 +4,17 @@ import { fonts } from "../constants/fonts";
 
 const PagesContainer = styled.div`
 position: relative;
-padding-top: 100px;
-padding-left: 185px;
+padding: 150px 235px;
 width: 100vw;
 height: calc(100vh - 100px);
 display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-gap: 3vh;
+align-items: ${props => props.books.length === 0 ? 'center' : 'flex-start'};
+justify-content: ${props => props.books.length === 0 ? 'center' : 'flex-start'};
 background-color: ${colors.background};
 font-family: ${fonts.text};
 
 @media (max-width: 760px) {
-    padding-left: 0px;
+    padding: 150px 50px;
 }
 `
 

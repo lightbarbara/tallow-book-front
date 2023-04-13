@@ -26,9 +26,11 @@ export default function FormSignIn() {
         e.preventDefault()
 
         try {
+
             const res = await axios.post(`${process.env.REACT_APP_BACK_END_URL}`, form)
             setToken(res.data.token)
             navigate('/home')
+
         } catch (err) {
             alert(err.response.data.message)
         }
