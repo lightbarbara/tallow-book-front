@@ -10,7 +10,7 @@ import axios from "axios"
 export default function Books() {
 
     const [books, setBooks] = useState([])
-    // const books = [1,23,4,2,3,3,3,3,3,3,3,33,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3]
+
     const { token } = useContext(UserContext)
 
     const config = {
@@ -25,7 +25,7 @@ export default function Books() {
             try {
 
                 const res = await axios.get(`${process.env.REACT_APP_BACK_END_URL}/books`, config)
-                // setBooks(res.data.books)
+                setBooks(res.data.books)
 
             } catch (err) {
                 alert(err.response.data.message)

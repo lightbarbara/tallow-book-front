@@ -6,7 +6,6 @@ const PagesContainer = styled.div`
 position: relative;
 padding: ${props => props.books.length === 0 ? '0 50px 50px 235px' : '150px 50px 50px 235px'};
 width: 100vw;
-/* height: ${props => props.books.length === 0 ? '100vh' : 'calc(100vh - 100px)'}; */
 height: 100vh;
 display: flex;
 align-items: ${props => props.books.length === 0 ? 'center' : 'flex-start'};
