@@ -21,7 +21,7 @@ export default function History() {
 
     useState(() => {
 
-        const getCart = async () => {
+        const getHistory = async () => {
             try {
 
                 const res = await axios.get(`${process.env.REACT_APP_BACK_END_URL}/history`, config)
@@ -32,7 +32,7 @@ export default function History() {
             }
         }
 
-        getCart()
+        getHistory()
 
     }, [])
 
