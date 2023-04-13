@@ -9,7 +9,7 @@ gap: 1vh;
 cursor: pointer;
 
 input, button {
-	width: 80vw;
+	width: 70vw;
 	height: 5vh;
 	border-radius: 7px;
 	border: none;

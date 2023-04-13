@@ -5,6 +5,7 @@ import SideMenu from "../components/SideMenu";
 import TopBar from "../components/TopBar";
 import { UserContext } from "../contexts/UserContext";
 import axios from "axios";
+import BookList from "../components/BookList";
 
 export default function MyBooks() {
 

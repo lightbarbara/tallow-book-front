@@ -4,9 +4,10 @@ import { fonts } from "../constants/fonts";
 
 const PagesContainer = styled.div`
 position: relative;
-padding: 150px 235px;
+padding: ${props => props.books.length === 0 ? '0 50px 50px 235px' : '150px 50px 50px 235px'};
 width: 100vw;
-height: calc(100vh - 100px);
+/* height: ${props => props.books.length === 0 ? '100vh' : 'calc(100vh - 100px)'}; */
+height: 100vh;
 display: flex;
 align-items: ${props => props.books.length === 0 ? 'center' : 'flex-start'};
 justify-content: ${props => props.books.length === 0 ? 'center' : 'flex-start'};
@@ -14,7 +15,7 @@ background-color: ${colors.background};
 font-family: ${fonts.text};
 
 @media (max-width: 760px) {
-    padding: 150px 50px;
+    padding: ${props => props.books.length === 0 ? '0 50px 50px 50px' : '150px 50px 50px 50px'};
 }
 `
 
