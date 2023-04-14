@@ -33,9 +33,9 @@ export default function FormSignUp() {
 
         try {
             await axios.post(`${process.env.REACT_APP_BACK_END_URL}/sign-up`, form)
-
-            navigate('/products')
+            navigate('/')
         } catch (err) {
+            console.log(err)
             alert(err.response.data.message)
         }
     }

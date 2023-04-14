@@ -6,7 +6,7 @@ import { UserContext } from "../contexts/UserContext.js"
 
 export default function FormSignIn() {
 
-    const { setToken } = useContext(UserContext)
+    const { setToken, setUser } = useContext(UserContext)
 
     const [form, setForm] = useState({
         email: '',
@@ -29,9 +29,11 @@ export default function FormSignIn() {
 
             const res = await axios.post(`${process.env.REACT_APP_BACK_END_URL}`, form)
             setToken(res.data.token)
-            navigate('/home')
+            setUser(res.data.user)
+            navigate('/books')
 
         } catch (err) {
+            console.log(err)
             alert(err.response.data.message)
         }
     }

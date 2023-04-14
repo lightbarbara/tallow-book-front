@@ -9,6 +9,7 @@ export default function SideMenu() {
             <Link to='/register-book'><p>Cadastrar livros</p></Link>
             <Link to='/cart'><p>Carrinho</p></Link>
             <Link to='/history'><p>Histórico</p></Link>
+            <p>Sair</p>
         </Container>
     )
 }
@@ -36,6 +37,7 @@ p {
     padding-bottom: 20px;
     border-bottom: 2px solid ${colors.darkBlue};
     color: ${colors.darkBlue};
+    cursor: pointer;
 }
 
 @media (max-width: 760px) {

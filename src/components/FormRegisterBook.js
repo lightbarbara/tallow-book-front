@@ -76,7 +76,7 @@ export default function FormRegisterBook() {
                 required
             />
             <input
-                name="Year"
+                name="year"
                 type="number"
                 value={form.year}
                 onChange={handleForm}
@@ -93,7 +93,7 @@ export default function FormRegisterBook() {
             />
             <input
                 name="edition"
-                type="text"
+                type="number"
                 value={form.edition}
                 onChange={handleForm}
                 placeholder="Edição"
