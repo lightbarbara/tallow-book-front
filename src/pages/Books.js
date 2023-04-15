@@ -1,4 +1,4 @@
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import BookList from "../components/BookList"
 import TopBar from "../components/TopBar"
 import SideMenu from "../components/SideMenu"
@@ -6,6 +6,7 @@ import OutsideContainer from "../components/OutsideContainer"
 import PagesContainer from "../components/PagesContainer"
 import { UserContext } from "../contexts/UserContext"
 import axios from "axios"
+import { useNavigate } from "react-router-dom"
 
 export default function Books() {
 
@@ -13,13 +14,15 @@ export default function Books() {
 
     const { token } = useContext(UserContext)
 
+    const navigate = useNavigate()
+
     const config = {
         headers: {
             Authorization: `Bearer ${token}`
         }
     }
 
-    useState(() => {
+    useEffect(() => {
 
         const getBooks = async () => {
             try {
@@ -29,6 +32,7 @@ export default function Books() {
 
             } catch (err) {
                 alert(err.response.data.message)
+                navigate('/')
             }
         }
 
