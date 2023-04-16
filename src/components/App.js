@@ -9,7 +9,7 @@ import MyBooks from '../pages/MyBooks';
 import RegisterBook from '../pages/RegisterBook';
 import Cart from '../pages/Cart';
 import History from '../pages/History';
-import { Payment } from './Payment';
+import Payment from '../pages/Payment';
 
 function App() {
 
