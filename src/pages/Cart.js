@@ -63,7 +63,7 @@ export default function Cart() {
 
     return (
         <OutsideContainer>
-            <TopBar />
+            <TopBar search={false} />
             <PagesContainer books={books} selectedBooks={books}>
                 <SideMenu />
                 <button disabled={books.length === 0 ? true : false} onClick={buyBooks}>Fazer compra</button>

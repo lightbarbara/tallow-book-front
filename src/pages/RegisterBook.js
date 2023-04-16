@@ -23,7 +23,7 @@ export default function RegisterBook() {
 
     return (
         <OutsideContainer>
-            <TopBar />
+            <TopBar search={false} />
             <PagesContainer books={[]} selectedBooks={[]}>
                 <SideMenu />
                 <FormRegisterBook />

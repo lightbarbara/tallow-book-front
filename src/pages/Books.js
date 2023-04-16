@@ -12,6 +12,8 @@ export default function Books() {
 
     const [books, setBooks] = useState([])
 
+    const [searched, setSearched] = useState(false)
+
     const { token, selectedBooks, setSelectedBooks } = useContext(UserContext)
 
     const navigate = useNavigate()
@@ -28,7 +30,6 @@ export default function Books() {
         try {
 
             await axios.post(`${process.env.REACT_APP_BACK_END_URL}/cart`, { books: selectedBooks }, config)
-
             setSelectedBooks([])
 
         } catch (err) {
@@ -57,7 +58,7 @@ export default function Books() {
 
     return (
         <OutsideContainer>
-            <TopBar />
+            <TopBar search={true} searched={searched} setSearched={setSearched} setBooks={setBooks} books={books} />
             <PagesContainer books={books} selectedBooks={selectedBooks}>
                 <SideMenu />
                 <button disabled={selectedBooks.length === 0 ? true : false} onClick={sendToCart}>Adicionar ao carrinho</button>

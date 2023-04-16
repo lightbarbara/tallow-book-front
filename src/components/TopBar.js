@@ -4,21 +4,52 @@ import logo from '../assets/logo.png'
 import { fonts } from "../constants/fonts"
 import { useContext } from "react"
 import { UserContext } from "../contexts/UserContext"
+import axios from "axios"
+import { DebounceInput } from "react-debounce-input"
 
-export default function TopBar() {
+export default function TopBar({ search, books, setBooks, searched, setSearched }) {
 
-    const { user } = useContext(UserContext)
+    const { token, user } = useContext(UserContext)
 
-    function searchBooks() {
+    let searchedBooks = ''
 
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+
+    async function searchBooks(name) {
+        try {
+
+            const res = await axios.get(`${process.env.REACT_APP_BACK_END_URL}/books/${name}`, config)
+            console.log(res)
+            setBooks(res.data)
+            setSearched(!searched)
+
+        } catch (err) {
+            console.log(err)
+            alert(err.response.data.message)
+        }
     }
 
     return (
-        <Container>
+        <Container search={search}>
             <img src={logo} alt='logo' />
-            <input
-                onChange={searchBooks}
+            <DebounceInput
+                debounceTimeout={300}
                 placeholder="Pesquisar livro"
+                disabled={!search}
+                type="search"
+                onChange={(e) => {
+                    searchedBooks = e.target.value
+                    if (searchedBooks.length > 0) {
+                        searchBooks(searchedBooks)
+                    }
+                    if (searchedBooks.length === 0) {
+                        searchBooks('')
+                    }
+                }}
             />
             <div>
                 <p>{user.name}</p>
@@ -70,6 +101,7 @@ input {
     font-size: 13px;
     padding: 0 14px;
     box-sizing: border-box;
+    opacity: ${props => props.search ? 1 : 0};
 
     @media (max-width: 760px) {
         display: none;

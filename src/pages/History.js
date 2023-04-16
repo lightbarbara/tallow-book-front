@@ -42,7 +42,7 @@ export default function History() {
 
     return (
         <OutsideContainer>
-            <TopBar />
+            <TopBar search={false} />
             <PagesContainer books={books} selectedBooks={[]}>
                 <SideMenu />
                 {books.length === 0 ? <p>Você ainda não comprou nenhum livro</p> : <BookList books={books} selectedBooks={[]} />}
