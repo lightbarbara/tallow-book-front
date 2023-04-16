@@ -14,6 +14,8 @@ export default function Cart() {
 
     const { token } = useContext(UserContext)
 
+    const [deleted, setDeleted] = useState(false)
+
     const navigate = useNavigate()
 
     const config = {
@@ -22,8 +24,23 @@ export default function Cart() {
         }
     }
 
-    async function buyBooks(e) {
+    function setSelectedBooks() {
+        return
+    }
 
+    async function buyBooks(e) {
+        e.preventDefault()
+
+        try {
+
+            await axios.post(`${process.env.REACT_APP_BACK_END_URL}/finish-cart`, {}, config)
+
+            setBooks([])
+
+        } catch (err) {
+            console.log(err)
+            alert(err.response.data.message)
+        }
     }
 
     useEffect(() => {
@@ -42,7 +59,7 @@ export default function Cart() {
 
         getCart()
 
-    }, [])
+    }, [deleted])
 
     return (
         <OutsideContainer>
@@ -50,7 +67,7 @@ export default function Cart() {
             <PagesContainer books={books} selectedBooks={books}>
                 <SideMenu />
                 <button disabled={books.length === 0 ? true : false} onClick={buyBooks}>Fazer compra</button>
-                {books.length === 0 ? <p>Você ainda não possui nada em seu carrinho</p> : <BookList books={books} selectedBooks={[]} />}
+                {books.length === 0 ? <p>Você ainda não possui nada em seu carrinho</p> : <BookList books={books} selectedBooks={[]} setSelectedBooks={setSelectedBooks} type={'cart'} deleted={deleted} setDeleted={setDeleted} />}
             </PagesContainer>
         </OutsideContainer>
     )

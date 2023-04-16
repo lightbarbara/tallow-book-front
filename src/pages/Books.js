@@ -61,7 +61,7 @@ export default function Books() {
             <PagesContainer books={books} selectedBooks={selectedBooks}>
                 <SideMenu />
                 <button disabled={selectedBooks.length === 0 ? true : false} onClick={sendToCart}>Adicionar ao carrinho</button>
-                {books.length === 0 ? <p>Não existem livros disponíveis para troca</p> : <BookList books={books} selectedBooks={selectedBooks} setSelectedBooks={setSelectedBooks} />}
+                {books.length === 0 ? <p>Não existem livros disponíveis para troca</p> : <BookList books={books} selectedBooks={selectedBooks} setSelectedBooks={setSelectedBooks} type={'books'} />}
             </PagesContainer>
         </OutsideContainer>
     )

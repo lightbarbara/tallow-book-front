@@ -14,6 +14,8 @@ export default function MyBooks() {
 
     const { token } = useContext(UserContext)
 
+    const [deleted, setDeleted] = useState(false)
+
     const navigate = useNavigate()
 
     const config = {
@@ -42,14 +44,14 @@ export default function MyBooks() {
 
         getBooks()
 
-    }, [])
+    }, [deleted])
 
     return (
         <OutsideContainer>
             <TopBar />
             <PagesContainer books={books} selectedBooks={[]}>
                 <SideMenu />
-                {books.length === 0 ? <p>Você ainda não cadastrou nenhum livro na plataforma</p> : <BookList books={books} selectedBooks={[]} setSelectedBooks={setSelectedBooks} />}
+                {books.length === 0 ? <p>Você ainda não cadastrou nenhum livro na plataforma</p> : <BookList books={books} selectedBooks={[]} setSelectedBooks={setSelectedBooks} type={'myBooks'} deleted={deleted} setDeleted={setDeleted} />}
             </PagesContainer>
         </OutsideContainer>
     )

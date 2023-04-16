@@ -58,7 +58,16 @@ export default function FormRegisterBook() {
                 value={form.name}
                 onChange={handleForm}
                 placeholder="Nome"
-                required />
+                required
+            />
+            <input
+                name="author"
+                type="text"
+                value={form.author}
+                onChange={handleForm}
+                placeholder="Autor"
+                required
+            />
             <input
                 name="image"
                 type="url"

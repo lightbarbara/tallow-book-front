@@ -9,6 +9,7 @@ import MyBooks from '../pages/MyBooks';
 import RegisterBook from '../pages/RegisterBook';
 import Cart from '../pages/Cart';
 import History from '../pages/History';
+import { Payment } from './Payment';
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
           <Route path='/my-books' element={<MyBooks />} />
           <Route path='/register-book' element={<RegisterBook />} />
           <Route path='/cart' element={<Cart />} />
+          <Route path='/payment' element={<Payment />} />
           <Route path='/history' element={<History />} />
         </Routes>
       </BrowserRouter>

@@ -17,7 +17,7 @@ font-family: ${fonts.text};
     padding: ${props => props.books.length === 0 ? '0 50px 50px 50px' : '160px 50px 50px 50px'};
 }
 
-button {
+&>button {
     position: absolute;
     top: 115px;
     width: 200px;

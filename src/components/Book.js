@@ -1,11 +1,22 @@
 import styled from "styled-components"
 import { colors } from "../constants/colors"
-import { useEffect } from "react"
+import { useContext, useEffect } from "react"
 import { useState } from "react"
+import { TrashOutline } from 'react-ionicons'
+import axios from "axios"
+import { UserContext } from "../contexts/UserContext"
 
-export default function Book({ b, selectedBooks, setSelectedBooks }) {
+export default function Book({ b, selectedBooks, setSelectedBooks, type, deleted, setDeleted }) {
 
     const [isSelected, setIsSelected] = useState(selectedBooks.includes(b.id))
+
+    const { token } = useContext(UserContext)
+
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
 
     function selectBook(id) {
         if (!selectedBooks.includes(id)) {
@@ -18,12 +29,32 @@ export default function Book({ b, selectedBooks, setSelectedBooks }) {
         }
     }
 
+    async function deleteBook(type, id) {
+        if (type === 'myBooks') {
+            try {
+                await axios.delete(`${process.env.REACT_APP_BACK_END_URL}/book/${id}`, config)
+            } catch (err) {
+                console.log(err)
+                alert(err.response.data.message)
+            }
+        }
+        if (type === 'cart') {
+            try {
+                await axios.delete(`${process.env.REACT_APP_BACK_END_URL}/cart/book/${id}`, config)
+            } catch (err) {
+                console.log(err)
+                alert(err.response.data.message)
+            }
+        }
+        setDeleted(!deleted)
+    }
+
     useEffect(() => {
         setIsSelected(selectedBooks.includes(b.id))
     }, [selectedBooks])
 
     return (
-        <BookContainer status={b.status} onClick={() => selectBook(b.id)} isSelected={isSelected} >
+        <BookContainer bookStatus={b.status} onClick={() => selectBook(b.id)} isSelected={isSelected} type={type} >
             <div>
                 <img src={b.image} alt='book' />
                 <p>{`Resumo: ${b.description}`}</p>
@@ -33,12 +64,24 @@ export default function Book({ b, selectedBooks, setSelectedBooks }) {
                 <p>{`Páginas: ${b.pages}`}</p>
                 <p>{`Preço: R$ ${b.price}`}</p>
             </div>
+            <div>
+                <TrashOutline
+                    color={'red'}
+                    title={'delete'}
+                    height="20px"
+                    width="20px"
+                    onClick={() => {
+                        deleteBook(type, b.id)
+                    }}
+                />
+            </div>
         </BookContainer>
     )
 }
 
 const BookContainer = styled.div`
 display: flex;
+position: relative;
 flex-direction: column;
 align-items: center;
 justify-content: space-around;
@@ -47,7 +90,7 @@ height: 350px;
 width: 270px;
 border-radius: 10px;
 border: ${props => props.isSelected ? '1px solid green' : ''};
-opacity: ${props => props.status === 'UNAVAILABLE' ? 0.5 : 1};
+opacity: ${props => props.type === 'myBooks' && props.bookStatus === 'UNAVAILABLE' ? 0.5 : 1 };
 
 div:nth-child(1) {
     height: 220px;
@@ -89,5 +132,13 @@ div:nth-child(2) {
     align-items: center;
     justify-content: center;
     gap: 5px;
+}
+
+div:nth-child(3) {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    opacity: ${props => ['cart', 'myBooks'].includes(props.type) ? 1 : 0};
+    cursor: ${props => ['cart', 'myBooks'].includes(props.type) ? 'pointer' : 'auto'};
 }
 `

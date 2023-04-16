@@ -6,7 +6,6 @@ const Form = styled.form`
 display: flex;
 flex-direction: column;
 gap: 1vh;
-cursor: pointer;
 
 input, button {
 	width: 70vw;
@@ -28,6 +27,7 @@ button {
     background-color: ${colors.mediumBlue};
     color: ${colors.white};
     font-weight: 700;
+    cursor: pointer;
 }
 `
 
