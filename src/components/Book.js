@@ -23,7 +23,7 @@ export default function Book({ b, selectedBooks, setSelectedBooks }) {
     }, [selectedBooks])
 
     return (
-        <BookContainer onClick={() => selectBook(b.id)} isSelected={isSelected} >
+        <BookContainer status={b.status} onClick={() => selectBook(b.id)} isSelected={isSelected} >
             <div>
                 <img src={b.image} alt='book' />
                 <p>{`Resumo: ${b.description}`}</p>
@@ -47,6 +47,7 @@ height: 350px;
 width: 270px;
 border-radius: 10px;
 border: ${props => props.isSelected ? '1px solid green' : ''};
+opacity: ${props => props.status === 'UNAVAILABLE' ? 0.5 : 1};
 
 div:nth-child(1) {
     height: 220px;
