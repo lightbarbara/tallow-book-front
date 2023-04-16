@@ -12,6 +12,8 @@ export default function Books() {
 
     const [books, setBooks] = useState([])
 
+    const [selectedBooks, setSelectedBooks] = useState([])
+
     const { token } = useContext(UserContext)
 
     const navigate = useNavigate()
@@ -38,14 +40,14 @@ export default function Books() {
 
         getBooks()
 
-    }, [])
+    }, [selectedBooks])
 
     return (
         <OutsideContainer>
             <TopBar />
             <PagesContainer books={books}>
                 <SideMenu />
-                {books.length === 0 ? <p>Não existem livros disponíveis para troca</p> : <BookList books={books} />}
+                {books.length === 0 ? <p>Não existem livros disponíveis para troca</p> : <BookList books={books} selectedBooks={selectedBooks} setSelectedBooks={setSelectedBooks} />}
             </PagesContainer>
         </OutsideContainer>
     )

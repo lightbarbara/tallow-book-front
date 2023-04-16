@@ -22,6 +22,10 @@ export default function MyBooks() {
         }
     }
 
+    function setSelectedBooks() {
+        return
+    }
+
     useEffect(() => {
 
         const getBooks = async () => {
@@ -45,7 +49,7 @@ export default function MyBooks() {
             <TopBar />
             <PagesContainer books={books}>
                 <SideMenu />
-                {books.length === 0 ? <p>Você ainda não cadastrou nenhum livro na plataforma</p> : <BookList books={books} />}
+                {books.length === 0 ? <p>Você ainda não cadastrou nenhum livro na plataforma</p> : <BookList books={books} selectedBooks={[]} setSelectedBooks={setSelectedBooks} />}
             </PagesContainer>
         </OutsideContainer>
     )

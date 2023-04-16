@@ -1,12 +1,32 @@
 import styled from "styled-components"
 import { colors } from "../constants/colors"
+import { useEffect } from "react"
+import { useState } from "react"
 
-export default function Book({ b }) {
+export default function Book({ b, selectedBooks, setSelectedBooks }) {
+
+    const [isSelected, setIsSelected] = useState(selectedBooks.includes(b.id))
+
+    function selectBook(id) {
+        if (!selectedBooks.includes(id)) {
+            setSelectedBooks([...selectedBooks, id])
+        } else {
+            const books = [...selectedBooks]
+            const index = books.indexOf(id)
+            books.splice(index, 1)
+            setSelectedBooks([...books])
+        }
+    }
+
+    useEffect(() => {
+        setIsSelected(selectedBooks.includes(b.id))
+    }, [selectedBooks])
+
     return (
-        <BookContainer>
+        <BookContainer onClick={() => selectBook(b.id)} isSelected={isSelected} >
             <div>
                 <img src={b.image} alt='book' />
-                <p>{`Resumo: sssssssssssssssssssssssssssssssss ${b.description}`}</p>
+                <p>{`Resumo: ${b.description}`}</p>
             </div>
             <div>
                 <p>{b.name}</p>
@@ -26,6 +46,7 @@ background-color: ${colors.lightBlue};
 height: 350px;
 width: 270px;
 border-radius: 10px;
+border: ${props => props.isSelected ? '1px solid green' : ''};
 
 div:nth-child(1) {
     height: 220px;
