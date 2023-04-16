@@ -47,7 +47,7 @@ export default function MyBooks() {
     return (
         <OutsideContainer>
             <TopBar />
-            <PagesContainer books={books}>
+            <PagesContainer books={books} selectedBooks={[]}>
                 <SideMenu />
                 {books.length === 0 ? <p>Você ainda não cadastrou nenhum livro na plataforma</p> : <BookList books={books} selectedBooks={[]} setSelectedBooks={setSelectedBooks} />}
             </PagesContainer>

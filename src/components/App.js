@@ -18,6 +18,8 @@ function App() {
   const tokenOnLocalStorage = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')).token : ''
   const [token, setToken] = useState(tokenOnLocalStorage)
 
+  const [selectedBooks, setSelectedBooks] = useState([])
+
   function setAndPersistUser(res) {
     localStorage.setItem('user', JSON.stringify(res.data))
     setUser(res.data.user)
@@ -25,7 +27,7 @@ function App() {
   }
 
   return (
-    <UserContext.Provider value={{ token, setToken, user, setUser, setAndPersistUser }}>
+    <UserContext.Provider value={{ token, setToken, user, setUser, setAndPersistUser, selectedBooks, setSelectedBooks }}>
       <BrowserRouter>
         <GlobalStyle />
         <Routes>

@@ -12,15 +12,28 @@ export default function Books() {
 
     const [books, setBooks] = useState([])
 
-    const [selectedBooks, setSelectedBooks] = useState([])
-
-    const { token } = useContext(UserContext)
+    const { token, selectedBooks, setSelectedBooks } = useContext(UserContext)
 
     const navigate = useNavigate()
 
     const config = {
         headers: {
             Authorization: `Bearer ${token}`
+        }
+    }
+
+    async function sendToCart(e) {
+        e.preventDefault()
+
+        try {
+
+            await axios.post(`${process.env.REACT_APP_BACK_END_URL}/cart`, { books: selectedBooks }, config)
+
+            setSelectedBooks([])
+
+        } catch (err) {
+            console.log(err)
+            alert(err.response.data.message)
         }
     }
 
@@ -45,8 +58,9 @@ export default function Books() {
     return (
         <OutsideContainer>
             <TopBar />
-            <PagesContainer books={books}>
+            <PagesContainer books={books} selectedBooks={selectedBooks}>
                 <SideMenu />
+                <button disabled={selectedBooks.length === 0 ? true : false} onClick={sendToCart}>Adicionar ao carrinho</button>
                 {books.length === 0 ? <p>Não existem livros disponíveis para troca</p> : <BookList books={books} selectedBooks={selectedBooks} setSelectedBooks={setSelectedBooks} />}
             </PagesContainer>
         </OutsideContainer>

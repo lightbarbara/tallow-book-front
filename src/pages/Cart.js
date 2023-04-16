@@ -28,6 +28,9 @@ export default function Cart() {
             try {
 
                 const res = await axios.get(`${process.env.REACT_APP_BACK_END_URL}/cart`, config)
+                console.log(res.data)
+                const newBooks = res.data.filter(b => b.book)
+                console.log(newBooks)
                 setBooks(res.data)
 
             } catch (err) {
@@ -43,9 +46,9 @@ export default function Cart() {
     return (
         <OutsideContainer>
             <TopBar />
-            <PagesContainer books={books}>
+            <PagesContainer books={books} selectedBooks={[]}>
                 <SideMenu />
-                {books.length === 0 ? <p>Você ainda não possui nada em seu carrinho</p> : <BookList books={books} />}
+                {books.length === 0 ? <p>Você ainda não possui nada em seu carrinho</p> : <BookList books={books} selectedBooks={[]} />}
             </PagesContainer>
         </OutsideContainer>
     )
