@@ -8,6 +8,7 @@ import { UserContext } from "../contexts/UserContext"
 export default function TopBar() {
 
     const { user } = useContext(UserContext)
+    console.log(user)
 
     function searchBooks() {
 
@@ -30,7 +31,7 @@ export default function TopBar() {
 
 const Container = styled.div`
 position: fixed;
-z-index: 1;
+z-index: 2;
 top: 0;
 width: 100vw;
 height: 100px;

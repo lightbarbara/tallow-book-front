@@ -28,7 +28,7 @@ export default function Cart() {
             try {
 
                 const res = await axios.get(`${process.env.REACT_APP_BACK_END_URL}/cart`, config)
-                setBooks(res.data.cart)
+                setBooks(res.data)
 
             } catch (err) {
                 alert(err.response.data.message)

@@ -28,7 +28,7 @@ export default function Books() {
             try {
 
                 const res = await axios.get(`${process.env.REACT_APP_BACK_END_URL}/books`, config)
-                setBooks(res.data.books)
+                setBooks(res.data)
 
             } catch (err) {
                 alert(err.response.data.message)

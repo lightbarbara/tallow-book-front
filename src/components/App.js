@@ -12,11 +12,20 @@ import History from '../pages/History';
 
 function App() {
 
-  const [user, setUser] = useState({})
-  const [token, setToken] = useState('')
+  const userOnLocalStorage = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')).user : ''
+  const [user, setUser] = useState(userOnLocalStorage)
+
+  const tokenOnLocalStorage = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')).token : ''
+  const [token, setToken] = useState(tokenOnLocalStorage)
+
+  function setAndPersistUser(res) {
+    localStorage.setItem('user', JSON.stringify(res.data))
+    setUser(res.data.user)
+    setToken(res.data.token)
+  }
 
   return (
-    <UserContext.Provider value={{ token, setToken, user, setUser }}>
+    <UserContext.Provider value={{ token, setToken, user, setUser, setAndPersistUser }}>
       <BrowserRouter>
         <GlobalStyle />
         <Routes>

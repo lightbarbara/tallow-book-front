@@ -28,7 +28,7 @@ export default function History() {
             try {
 
                 const res = await axios.get(`${process.env.REACT_APP_BACK_END_URL}/history`, config)
-                setBooks(res.data.history)
+                setBooks(res.data)
 
             } catch (err) {
                 alert(err.response.data.message)

@@ -3,17 +3,27 @@ import { useNavigate } from "react-router-dom";
 import Form from './Form'
 import { useContext, useState } from "react"
 import { UserContext } from "../contexts/UserContext.js"
+import { useEffect } from "react";
 
 export default function FormSignIn() {
 
-    const { setToken, setUser } = useContext(UserContext)
+    const { setToken, setUser, setAndPersistUser } = useContext(UserContext)
+    const userOnLocalStorage = JSON.parse(localStorage.getItem('user'))
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (userOnLocalStorage) {
+            setUser(userOnLocalStorage.user)
+            setToken(userOnLocalStorage.token)
+            navigate('/books')
+        }
+    }, [])
 
     const [form, setForm] = useState({
         email: '',
         password: ''
     })
-
-    const navigate = useNavigate();
 
     function handleForm(e) {
         setForm({
@@ -28,6 +38,7 @@ export default function FormSignIn() {
         try {
 
             const res = await axios.post(`${process.env.REACT_APP_BACK_END_URL}`, form)
+            setAndPersistUser(res)
             setToken(res.data.token)
             setUser(res.data.user)
             navigate('/books')

@@ -4,13 +4,20 @@ import { Link } from "react-router-dom"
 
 export default function SideMenu() {
 
+    function logout(e) {
+        e.preventDefault()
+
+        
+    }
+
     return (
         <Container>
+            <Link to='/books'><p>Livros</p></Link>
             <Link to='/my-books'><p>Meus livros</p></Link>
             <Link to='/register-book'><p>Cadastrar livros</p></Link>
             <Link to='/cart'><p>Carrinho</p></Link>
             <Link to='/history'><p>Histórico</p></Link>
-            <p>Sair</p>
+            <Link to='/'><p onClick={logout}>Sair</p></Link>
         </Container>
     )
 }
