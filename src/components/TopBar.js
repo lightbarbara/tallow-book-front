@@ -8,7 +8,6 @@ import { UserContext } from "../contexts/UserContext"
 export default function TopBar() {
 
     const { user } = useContext(UserContext)
-    console.log(user)
 
     function searchBooks() {
 

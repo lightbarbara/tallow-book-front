@@ -1,13 +1,15 @@
 import styled from "styled-components"
 import { colors } from "../constants/colors"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 export default function SideMenu() {
 
+    const navigate = useNavigate()
+
     function logout(e) {
         e.preventDefault()
-
-        
+        localStorage.removeItem('user')
+        navigate('/')
     }
 
     return (
