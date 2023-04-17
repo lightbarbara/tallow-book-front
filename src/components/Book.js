@@ -93,7 +93,7 @@ div:nth-child(1) {
     position: relative;
 }
 
-img {
+div:nth-child(1)>img {
     position: absolute;
     z-index: 1;
     height: 220px;
@@ -108,7 +108,7 @@ div:nth-child(1)>p {
     word-break: break-all;
 }
 
-img:hover {
+div:nth-child(1)>img:hover {
     opacity: 0;
 }
 
@@ -134,5 +134,10 @@ div:nth-child(3) {
     width: 20px;
     opacity: ${props => ['cart', 'myBooks'].includes(props.type) ? 1 : 0};
     cursor: ${props => ['cart', 'myBooks'].includes(props.type) ? 'pointer' : 'auto'};
+
+    img {
+        height: 20px;
+        width: 20px;
+    }
 }
 `
