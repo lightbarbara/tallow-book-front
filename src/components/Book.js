@@ -2,7 +2,7 @@ import styled from "styled-components"
 import { colors } from "../constants/colors"
 import { useContext, useEffect } from "react"
 import { useState } from "react"
-import { TrashOutline } from 'react-ionicons'
+import trash from '../assets/bin.png'
 import axios from "axios"
 import { UserContext } from "../contexts/UserContext"
 
@@ -65,15 +65,7 @@ export default function Book({ b, selectedBooks, setSelectedBooks, type, deleted
                 <p>{`Preço: R$ ${b.price}`}</p>
             </div>
             <div>
-                <TrashOutline
-                    color={'red'}
-                    title={'delete'}
-                    height="20px"
-                    width="20px"
-                    onClick={() => {
-                        deleteBook(type, b.id)
-                    }}
-                />
+                <img src={trash} alt='trash' onClick={() => deleteBook(type, b.id)} />
             </div>
         </BookContainer>
     )
@@ -138,6 +130,8 @@ div:nth-child(3) {
     position: absolute;
     bottom: 10px;
     right: 10px;
+    height: 20px;
+    width: 20px;
     opacity: ${props => ['cart', 'myBooks'].includes(props.type) ? 1 : 0};
     cursor: ${props => ['cart', 'myBooks'].includes(props.type) ? 'pointer' : 'auto'};
 }
